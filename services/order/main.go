@@ -49,5 +49,5 @@ func main() {
 		v1.POST("/order", controller.CreateOrder)
 	}
 
-	app.Run(":" + config.Port)
+	app.Run(":" + config.ServicePort)
 }

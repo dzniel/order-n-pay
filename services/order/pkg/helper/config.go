@@ -11,6 +11,7 @@ type Config struct {
 	Port        string `mapstructure:"PORT"`
 	SSLMode     string `mapstructure:"SSL_MODE"`
 	Timezone    string `mapstructure:"TIMEZONE"`
+	ServicePort string `mapstructure:"SERVICE_PORT"`
 }
 
 func LoadConfig(path string) (config Config, err error) {

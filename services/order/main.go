@@ -18,14 +18,13 @@ func main() {
 		return
 	}
 
-	db, err := database.DBConnect(config)
+	db, err := database.New().DBConnect(config)
 	if err != nil {
 		log.Fatal("database connection failed")
 		return
 	}
 
 	app := gin.Default()
-	app.Use(gin.Logger())
 	app.Use(gin.Recovery())
 	app.Use(database.InjectDB(db))
 	app.UseRawPath = true
@@ -45,8 +44,8 @@ func main() {
 
 	v1 := app.Group("/v1")
 	{
-		v1.GET("/order", controller.ListOrder)
 		v1.POST("/order", controller.CreateOrder)
+		v1.GET("/order", controller.ListOrder)
 	}
 
 	app.Run(":" + config.ServicePort)
